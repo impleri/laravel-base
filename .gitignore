@@ -1,0 +1,8 @@
+/bootstrap/compiled.php
+/bower_components
+/node_modules
+/vendor
+/public
+composer.phar
+composer.lock
+.DS_Store
