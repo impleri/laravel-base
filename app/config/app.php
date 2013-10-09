@@ -88,10 +88,14 @@ return array(
         'Illuminate\View\ViewServiceProvider',
         'Illuminate\Workbench\WorkbenchServiceProvider',
 
+        'JasonLewis\EnhancedRouter\EnhancedRouterServiceProvider',
+        'Cviebrock\EloquentSluggable\SluggableServiceProvider',
+        'Cartalyst\NestedSets\NestedSetsServiceProvider',
         'Zizaco\Confide\ConfideServiceProvider',
         'Zizaco\Entrust\EntrustServiceProvider',
         'Robbo\Presenter\PresenterServiceProvider',
         'Andrew13\Cabinet\CabinetServiceProvider',
+        'Illuminage\IlluminageServiceProvider',
         'Bllim\Datatables\DatatablesServiceProvider',
     ),
 
@@ -149,9 +153,11 @@ return array(
         'Validator'       => 'Illuminate\Support\Facades\Validator',
         'View'            => 'Illuminate\Support\Facades\View',
 
+        'Sluggable'       => 'Cviebrock\EloquentSluggable\Facades\Sluggable',
         'Confide'         => 'Zizaco\Confide\ConfideFacade',
         'Entrust'         => 'Zizaco\Entrust\EntrustFacade',
         'Cabinet'         => 'Andrew13\Cabinet\CabinetFacade',
+        'Illuminage'      => 'Illuminage\Facades\Illuminage',
         'Datatables'      => 'Bllim\Datatables\Datatables',
     ),
 );

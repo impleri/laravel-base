@@ -1,0 +1,30 @@
+// Files are set up according to SMACSS schema
+
+
+// Variables and settings
+@import "base";
+
+/**
+ * Global element styles
+ */
+@import "default";
+
+/**
+ * Layout definitions
+ */
+@import "layout";
+
+/**
+ * Modular components
+ */
+@import "components";
+
+/**
+ * State-specific styles
+ */
+@import "states";
+
+/**
+ * Final styling and theming
+ */
+@import "theme";

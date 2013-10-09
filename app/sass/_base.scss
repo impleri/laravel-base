@@ -1,0 +1,55 @@
+// This is the root file which should be used strictly for defining
+// global variables. It is pre-set to import compass and susy as well
+// as provide some defaults.
+
+// Compass
+@import "compass";
+
+// Vertical rhythm
+$base-font-size: 16px;
+$base-line-height: 1.5 * $base-font-size;
+@include establish-baseline;
+
+// Disable vendor prefixes since autoprefixer handles this
+$legacy-support-for-ie: false;
+$legacy-support-for-ie6: false;
+$legacy-support-for-ie7: false;
+$legacy-support-for-ie8: false;
+$legacy-support-for-mozilla: false;
+$support-for-original-webkit-gradients: false;
+$experimental-support-for-mozilla: false;
+$experimental-support-for-webkit: false;
+$experimental-support-for-opera: false;
+$experimental-support-for-microsoft: false;
+$experimental-support-for-khtml: false;
+
+// From http://www.css-101.org/articles/clearfix/latest-new-clearfix-so-far.php
+@mixin nano-clearfix {
+    &:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+// Susy
+@import "susy";
+
+// Mobile-first grid
+$mobile-cols: 4;
+$total-columns: $mobile-cols;
+$column-width:  4em;
+$gutter-width:  1em;
+$grid-padding:  $gutter-width;
+
+// Breakpoint: tablet/narrow
+$tablet-cols: 8;
+$tablet: 30em $tablet-cols;
+
+// Breakpoint: desktop/normal
+$desktop-cols: 12;
+$desktop: 60em $desktop-cols;
+
+// Breakpoint: wide
+$wide-cols: 16;
+$wide: 90em $wide-cols;

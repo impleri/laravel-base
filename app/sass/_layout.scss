@@ -1,0 +1,53 @@
+.l-header,
+.l-page,
+.l-footer {
+  @include container;
+}
+
+@include at-breakpoint($tablet) {
+  .l-header,
+  .l-page,
+  .l-footer {
+    @include set-container-width;
+  }
+
+  .l-nav {
+    @include span-columns(3 omega, $tablet-cols);
+  }
+
+  .l-main {
+    @include span-columns(5, $tablet-cols);
+  }
+}
+
+@include at-breakpoint($desktop) {
+  .l-header,
+  .l-page,
+  .l-footer {
+    @include set-container-width;
+  }
+
+  .l-nav {
+    @include span-columns(4 omega, $desktop-cols);
+  }
+
+  .l-main {
+      @include span-columns(8, $desktop-cols);
+  }
+}
+
+@include at-breakpoint($wide) {
+  .l-header,
+  .l-page,
+  .l-footer {
+    @include set-container-width;
+  }
+
+  .l-nav {
+    @include span-columns(6 omega, $wide-cols);
+  }
+
+  .l-main {
+      @include span-columns(10, $wide-cols);
+  }
+}

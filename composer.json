@@ -8,10 +8,14 @@
 	"require": {
 		"laravel/framework": "4.0.*",
 
+		"jasonlewis/enhanced-router": "1.0.*",
+		"cviebrock/eloquent-sluggable": "1.0.*",
         "laravelbook/ardent": "2.0.*",
 		"zizaco/confide": "1.1.*",
 		"zizaco/entrust": "0.3.*",
+		"cartalyst/nested-sets": "2.0.*",
 		"andrew13/cabinet": "0.1.*",
+		"anahkiasen/illuminage": "dev-master",
 
 	    "robclancy/presenter": "1.2.*",
 	    "anahkiasen/former": "3.2.*",
