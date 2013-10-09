@@ -1,31 +1,42 @@
 {
-    "name": "laravel-base",
-    "version": "0.0.1",
-    "main": "public/js/app.js",
-    "dependencies": {
-        "jquery": "~2.0.3",
-        "jquery-ui": "~1.10.3",
-        "font-awesome": "~3.2.1",
-        "modernizr": "~2.6.2",
-        "normalize-css": "~2.1.3",
-        "picturefill": "~1.2.0"
+  "name": "laravel-base",
+  "version": "0.0.1",
+  "main": "public/js/app.js",
+  "dependencies": {
+    "jquery": "~2.0.3",
+    "jquery-ui": "~1.10.3",
+    "font-awesome": "~3.2.1",
+    "modernizr": "~2.6.2",
+    "normalize-css": "~2.1.3",
+    "picturefill": "~1.2.0",
+    "bootstrap-wysiwyg": "*",
+    "jquery.hotkeys": "*"
+  },
+  "overrides": {
+    "bootstrap-wysiwyg": {
+      "main": [
+        "bootstrap-wysiwyg.js"
+      ]
     },
-    "overrides": {
-        "font-awesome": {
-            "main": [
-                "font",
-                "css/font-awesome.css"
-            ]
-        },
-        "modernizr": {
-            "main": [
-                "modernizr.js"
-            ]
-        },
-        "picturefill": {
-            "main": [
-                "picturefill.js"
-            ]
-        }
+    "font-awesome": {
+      "main": [
+        "css/font-awesome.css"
+      ]
+    },
+    "jquery.hotkeys": {
+      "main": [
+        "jquery.hotkeys.js"
+      ]
+    },
+    "modernizr": {
+      "main": [
+        "modernizr.js"
+      ]
+    },
+    "picturefill": {
+      "main": [
+        "picturefill.js"
+      ]
     }
+  }
 }
