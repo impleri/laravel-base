@@ -7,13 +7,14 @@
 
 	"require": {
 		"laravel/framework": "4.0.*",
+		"illuminate/remote": "4.1.*",
 
+		"anahkiasen/rocketeer": "0.7.*",
 		"jasonlewis/enhanced-router": "1.0.*",
 		"cviebrock/eloquent-sluggable": "1.0.*",
-        "laravelbook/ardent": "2.0.*",
+        "laravelbook/ardent": "1.1.*",
 		"zizaco/confide": "1.1.*",
 		"zizaco/entrust": "0.3.*",
-		"cartalyst/nested-sets": "2.0.*",
 		"andrew13/cabinet": "0.1.*",
 		"anahkiasen/illuminage": "dev-master",
 
@@ -25,11 +26,12 @@
 	"require-dev": {
         "way/generators": "dev-master",
         "barryvdh/laravel-ide-helper": "1.7.*",
-        "codeception/codeception": "1.6.*",
+        "codeception/codeception": "1.6.*"
 	},
 
 	"autoload": {
 		"classmap": [
+			"vendor/illuminate/remote",
 			"app/commands",
 			"app/database/migrations",
 			"app/database/seeds",
