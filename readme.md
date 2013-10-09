@@ -55,3 +55,11 @@ respective applications are included in the root.
     | composer.json - Composer's configuration file
     | package.json  - Brunch's configuration file
     \_phpunit.xml   - phpUnit configuration file
+
+## Autoloading in Laravel
+
+While Laravel does not require application models and controllers to be namespaced,
+I prefer to conform as much as possible to PSR-0. Composer is configured to auto-
+load the `app` root namespace from the app/ directory (e.g. app/model/Page should
+exist at app/model/Page.php). Eventually, I hope to have everything autoloaded
+for the `app` namespace.

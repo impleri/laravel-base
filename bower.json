@@ -10,7 +10,8 @@
     "normalize-css": "~2.1.3",
     "picturefill": "~1.2.0",
     "bootstrap-wysiwyg": "*",
-    "jquery.hotkeys": "*"
+    "jquery.hotkeys": "*",
+    "datatables": "~1.9.4"
   },
   "overrides": {
     "bootstrap-wysiwyg": {
