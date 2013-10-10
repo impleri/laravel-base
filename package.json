@@ -12,15 +12,15 @@
     "test": "brunch test"
   },
   "dependencies": {
-    "coffee-script-brunch": "^1.7",
-    "coffeelint-brunch": "^1.5",
-    "javascript-brunch": "^1.7",
-    "jshint-brunch": "^1.6",
-    "uglify-js-brunch": "^1.7",
+    "coffee-script-brunch": "~1.7",
+    "coffeelint-brunch": "~1.5",
+    "javascript-brunch": "~1.7",
+    "jshint-brunch": "~1.6",
+    "uglify-js-brunch": "~1.7",
 
-    "sass-brunch": "^1.7",
-    "css-brunch": "^1.7",
-    "autoprefixer-brunch": "^1.7",
-    "clean-css-brunch": "^1.7"
+    "sass-brunch": "~1.7",
+    "css-brunch": "~1.7",
+    "autoprefixer-brunch": "~1.7",
+    "clean-css-brunch": "~1.7"
   }
 }
