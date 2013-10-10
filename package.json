@@ -10,7 +10,7 @@
   "scripts": {
     "start": "brunch watch --server",
     "test": "brunch test",
-    "postinstall": "composer install"
+    "prepublish": "composer install"
   },
   "dependencies": {
     "coffee-script-brunch": "~1.7",
