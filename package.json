@@ -3,7 +3,10 @@
   "description": "A base Laravel installation ready for Brunch",
   "author": "Christopher Roussel",
   "version": "0.0.1",
-  "repository": "",
+  "repository" : { 
+    "type" : "git",
+    "url" : "http://github.com/impleri/laravel-base.git"
+  },
   "scripts": {
     "start": "brunch watch --server",
     "test": "brunch test"
