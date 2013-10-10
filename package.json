@@ -17,7 +17,6 @@
 
     "css-brunch": ">= 1.0 < 1.8",
     "sass-brunch": "~1.7.0",
-    "compass-brunch": "0.0.2",
     "autoprefixer-brunch": "~1.7.1",
 
     "jshint-brunch": "~1.6.0",
