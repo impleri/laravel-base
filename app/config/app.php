@@ -90,7 +90,6 @@ return array(
 
         'JasonLewis\EnhancedRouter\EnhancedRouterServiceProvider',
         'Cviebrock\EloquentSluggable\SluggableServiceProvider',
-        'Cartalyst\NestedSets\NestedSetsServiceProvider',
         'Zizaco\Confide\ConfideServiceProvider',
         'Zizaco\Entrust\EntrustServiceProvider',
         'Robbo\Presenter\PresenterServiceProvider',
