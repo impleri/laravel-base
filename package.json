@@ -2,7 +2,7 @@
   "name": "laravel-base",
   "description": "A base Laravel installation ready for Brunch",
   "author": "Christopher Roussel",
-  "version": "0.1.1",
+  "version": "0.1.3",
   "repository" : { 
     "type" : "git",
     "url" : "http://github.com/impleri/laravel-base.git"
