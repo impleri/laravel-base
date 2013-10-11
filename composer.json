@@ -10,23 +10,23 @@
 		"illuminate/remote": "4.1.*",
 
 		"anahkiasen/rocketeer": "0.7.*",
-		"jasonlewis/enhanced-router": "1.0.*",
-		"cviebrock/eloquent-sluggable": "1.0.*",
-        "laravelbook/ardent": "1.1.*",
-		"zizaco/confide": "1.1.*",
-		"zizaco/entrust": "0.3.*",
-		"andrew13/cabinet": "0.1.*",
+		"jasonlewis/enhanced-router": "~1.0",
+		"cviebrock/eloquent-sluggable": "~1.0",
+		"laravelbook/ardent": "~1.1",
+		"zizaco/confide": "~1.1",
+		"zizaco/entrust": "~0.3",
+		"andrew13/cabinet": "~0.1",
 		"anahkiasen/illuminage": "dev-master",
 
-	    "robclancy/presenter": "1.2.*",
-	    "anahkiasen/former": "3.2.*",
-        "bllim/datatables": "1.3.*"
+		"robclancy/presenter": "~1.2",
+		"anahkiasen/former": "~3.2",
+		"bllim/datatables": "~1.3"
 	},
 
 	"require-dev": {
-        "way/generators": "dev-master",
-        "barryvdh/laravel-ide-helper": "1.7.*",
-        "codeception/codeception": "1.6.*"
+	        "way/generators": "dev-master",
+        	"barryvdh/laravel-ide-helper": "~1.7",
+	        "codeception/codeception": "~1.6"
 	},
 
 	"autoload": {

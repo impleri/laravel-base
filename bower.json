@@ -1,17 +1,17 @@
 {
   "name": "laravel-base",
-  "version": "0.0.1",
+  "version": "0.1.3",
   "main": "public/js/app.js",
   "dependencies": {
-    "jquery": "~2.0.3",
-    "jquery-ui": "~1.10.3",
-    "font-awesome": "~3.2.1",
-    "modernizr": "~2.6.2",
-    "normalize-css": "~2.1.3",
-    "picturefill": "~1.2.0",
-    "bootstrap-wysiwyg": "*",
-    "jquery.hotkeys": "*",
-    "datatables": "~1.9.4"
+    "jquery": "~2.0",
+    "jquery-ui": "~1.10",
+    "modernizr": "~2.6",
+    "normalize-css": "~2.1",
+    "font-awesome": "~3.2",
+    "picturefill": "~1.2",
+    "jquery.hotkeys": "jeresig/jquery.hotkeys#~0.1",
+    "datatables": "~1.9",
+    "bootstrap-wysiwyg": "*"
   },
   "overrides": {
     "bootstrap-wysiwyg": {
@@ -39,5 +39,8 @@
         "picturefill.js"
       ]
     }
+  },
+  "resolutions": {
+    "jquery": "~2.0"
   }
 }

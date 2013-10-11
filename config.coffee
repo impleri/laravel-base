@@ -1,7 +1,8 @@
 exports.config =
   # See http://brunch.io/#documentation for docs.
-  paths:
-    compass: './compass.rb'
+  plugins:
+    sass:
+      debug: 'comments'
   files:
     javascripts:
       joinTo:
@@ -16,7 +17,7 @@ exports.config =
         ]
     stylesheets:
       joinTo:
-        'assets/css/app.css': /^app\/css/
+        'assets/css/app.css': /^app\/(css|sass)/
         'assets/css/vendor.css': /^bower_components/
       order:
         before: [
