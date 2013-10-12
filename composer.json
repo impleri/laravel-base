@@ -15,13 +15,14 @@
 		"laravelbook/ardent": "~1.1",
 		"zizaco/confide": "~1.1",
 		"zizaco/entrust": "~0.3",
-		"andrew13/cabinet": "~0.1",
-		"anahkiasen/illuminage": "dev-master",
+        "baum/baum": "~1.0",
+        "venturecraft/revisionable": "~1.2",
+        "andrew13/cabinet": "~0.1",
+        "anahkiasen/illuminage": "dev-master",
 
-		"robclancy/presenter": "~1.2",
-		"anahkiasen/former": "~3.2",
-		"bllim/datatables": "~1.3",
-		"baum/baum": "~1.0"
+        "robclancy/presenter": "~1.2",
+        "anahkiasen/former": "~3.2",
+        "bllim/datatables": "~1.3"
 	},
 
 	"require-dev": {

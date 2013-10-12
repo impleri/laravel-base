@@ -55,7 +55,7 @@ Brunch, Compass, Composer, PHPunit, and NPM are included in the root.
 
 The file structure is organised to make it quite painless to start over:
 
-    $ rm -rf app/css-generated public bower_components node_modules vendor
+    $ rm -rf app/css-generated public bower_components node_modules vendor composer.lock
     $ npm install
     $ bower install
     $ composer install
