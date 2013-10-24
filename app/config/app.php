@@ -94,13 +94,10 @@ return array(
         'Cviebrock\EloquentSluggable\SluggableServiceProvider',
         'Zizaco\Confide\ConfideServiceProvider',
         'Zizaco\Entrust\EntrustServiceProvider',
-        'Andrew13\Cabinet\CabinetServiceProvider',
         'Illuminage\IlluminageServiceProvider',
         'Robbo\Presenter\PresenterServiceProvider',
         'Former\FormerServiceProvider',
         'Bllim\Datatables\DatatablesServiceProvider',
-
-        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
     ),
 
     /**
@@ -161,7 +158,6 @@ return array(
         'Sluggable'       => 'Cviebrock\EloquentSluggable\Facades\Sluggable',
         'Confide'         => 'Zizaco\Confide\ConfideFacade',
         'Entrust'         => 'Zizaco\Entrust\EntrustFacade',
-        'Cabinet'         => 'Andrew13\Cabinet\CabinetFacade',
         'Illuminage'      => 'Illuminage\Facades\Illuminage',
         'Former'          => 'Former\Facades\Former',
         'Datatables'      => 'Bllim\Datatables\Datatables',

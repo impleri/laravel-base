@@ -11,13 +11,13 @@
 
 		"anahkiasen/rocketeer": "0.7.*",
 		"jasonlewis/enhanced-router": "~1.0",
+		"willdurand/negotiation": "~1.0",
 		"cviebrock/eloquent-sluggable": "~1.0",
 		"laravelbook/ardent": "~1.1",
 		"zizaco/confide": "~1.1",
 		"zizaco/entrust": "~0.3",
         "baum/baum": "~1.0",
         "venturecraft/revisionable": "~1.2",
-        "andrew13/cabinet": "~0.1",
         "anahkiasen/illuminage": "dev-master",
 
         "robclancy/presenter": "~1.2",
@@ -27,7 +27,6 @@
 
 	"require-dev": {
 	        "way/generators": "dev-master",
-        	"barryvdh/laravel-ide-helper": "~1.7",
 	        "codeception/codeception": "~1.6"
 	},
 

@@ -7,27 +7,17 @@
  * Closure to execute when that URI is requested.
  */
 
-/**
- * Confide routes
- */
-Route::get('user/create', 'UserController@create');
-Route::post('user', 'UserController@store');
-Route::get('user/login', 'UserController@login');
-Route::post('user/login', 'UserController@do_login');
-Route::get('user/confirm/{code}', 'UserController@confirm');
-Route::get('user/forgot_password', 'UserController@forgot_password');
-Route::post('user/forgot_password', 'UserController@do_forgot_password');
-Route::get('user/reset_password/{token}', 'UserController@reset_password');
-Route::post('user/reset_password', 'UserController@do_reset_password');
-Route::get('user/logout', 'UserController@logout');
+// All CRUD actions for individual elements should go under here as an API
+$resource_fmt = 'app\controllers\resources\%sResource';
+$resources = array (
+    'user' => sprintf($resource_fmt, 'User'),
+);
+\app\library\support\Router::group($resources);
 
-
-// Adding auth checks for the upload functionality is highly recommended.
-
-// Cabinet RESTful route
-Route::post('upload', 'UploadController@postIndex')
-->before('csrf');
-Route::controller('upload', 'UploadController');
+// Confide routes for handling user login/logout/confirm/reset
+Route::get('user/confirm/{code}', 'app\controllers\UserController@getConfirm');
+Route::get('user/reset_password/{token}', 'app\controllers\UserController@getResetPassword');
+Route::controller('user', 'app\controllers\UserController');
 
 // Final route
 Route::get(
