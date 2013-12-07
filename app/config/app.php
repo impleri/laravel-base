@@ -87,9 +87,7 @@ return array(
         'Illuminate\Validation\ValidationServiceProvider',
         'Illuminate\View\ViewServiceProvider',
         'Illuminate\Workbench\WorkbenchServiceProvider',
-        'Illuminate\Remote\RemoteServiceProvider',
 
-        'Rocketeer\RocketeerServiceProvider',
         'JasonLewis\EnhancedRouter\EnhancedRouterServiceProvider',
         'Cviebrock\EloquentSluggable\SluggableServiceProvider',
         'Zizaco\Confide\ConfideServiceProvider',
@@ -154,7 +152,6 @@ return array(
         'Validator'       => 'Illuminate\Support\Facades\Validator',
         'View'            => 'Illuminate\Support\Facades\View',
 
-        'Rocketeer'       => 'Rocketeer\Facades\Rocketeer',
         'Sluggable'       => 'Cviebrock\EloquentSluggable\Facades\Sluggable',
         'Confide'         => 'Zizaco\Confide\ConfideFacade',
         'Entrust'         => 'Zizaco\Entrust\EntrustFacade',

@@ -3,15 +3,30 @@
     <title>{{title}}</title>
 </head>
 <body>
-    <header class="l-header"></header>
-    <section class="l-page">
-        <nav class="l-nav"></nav>
-        <div class="l-main">
-            <div class="l-preface"></div>
-            <div class="l-content"></div>
-            <div class="l-postscript"></div>
-        </div>
-    </section>
-    <footer class="l-footer"></footer>
+    <div class="page">
+        <header>
+            <h1>{{title}}</h1>
+        </header>
+
+        <section>
+            <nav>
+
+            </nav>
+
+            <article>
+                <div class="preface"></div>
+                <div class="content"></div>
+                <div class="postscript"></div>
+            </article>
+
+            <aside>
+
+            </aside>
+        </section>
+
+        <footer class="l-footer">
+
+        </footer>
+    </div>
 </body>
 </html>

@@ -1,8 +1,10 @@
 exports.config =
   # See http://brunch.io/#documentation for docs.
   plugins:
-    sass:
-      debug: 'comments'
+    stylus:
+      plugins: [
+        'fluidity'
+      ]
   files:
     javascripts:
       joinTo:
@@ -17,7 +19,7 @@ exports.config =
         ]
     stylesheets:
       joinTo:
-        'assets/css/app.css': /^app\/(css|sass)/
+        'assets/css/app.css': /^app\/(css|styl)/
         'assets/css/vendor.css': /^bower_components/
       order:
         before: [

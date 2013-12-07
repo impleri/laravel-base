@@ -1,27 +1,27 @@
 {
-  "name": "laravel-base",
-  "description": "A base Laravel installation ready for Brunch",
+  "name": "jazz-brunch",
+  "description": "A jazzed-up Laravel installation ready for Brunch",
   "author": "Christopher Roussel",
-  "version": "0.1.3",
-  "repository" : { 
+  "repository" : {
     "type" : "git",
     "url" : "http://github.com/impleri/laravel-base.git"
   },
   "scripts": {
     "start": "brunch watch --server",
-    "test": "brunch test",
-    "prepublish": "composer install"
+    "test": "brunch test"
   },
   "dependencies": {
     "coffee-script-brunch": "~1.7",
     "coffeelint-brunch": "~1.5",
     "javascript-brunch": "~1.7",
-    "jshint-brunch": "~1.6",
     "uglify-js-brunch": "~1.7",
-
-    "sass-brunch": "~1.7",
+    "stylus-brunch": "~1.7",
+    "fluidity": "~0.2",
     "css-brunch": "~1.7",
     "autoprefixer-brunch": "~1.7",
     "clean-css-brunch": "~1.7"
+  },
+  "devDependencies": {
+    "swagger-ui": "2.0.2"
   }
 }

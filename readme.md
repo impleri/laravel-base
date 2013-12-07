@@ -68,3 +68,16 @@ namespaced, I prefer to conform as much as possible to PSR-0. Composer is
 configured to autoload the `app` root namespace from the app/ directory (e.g.
 app/model/Page should exist at app/model/Page.php). Eventually, I hope to have
 everything autoloaded for the `app` namespace.
+
+
+## Scaffolding
+
+Within app/library (eventually will be moved into a composer package), there are
+scaffolding classes, interfaces, and traits which allow you to build a site
+based on Laravel quickly.
+
+### Resources
+
+The BaseResourceTrait, CollectionResourceInterface, and ElementResourceInterface
+provide a fuller REST API interface which can handle json, xml, plain-text, and
+html output. These classes make it easier to build out a API interface
