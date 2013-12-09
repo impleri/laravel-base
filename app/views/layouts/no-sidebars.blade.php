@@ -15,7 +15,6 @@
 
         <section>
             @include('partials.content')
-            @include('partials.sidebar-one')
         </section>
 
         @include('partials.footer')

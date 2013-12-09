@@ -10,12 +10,14 @@
         @include('partials.meta')
     </head>
 
-    <body class="one-sidebar">
+    <body class="two-sidebars">
         @include('partials.header')
 
         <section>
             @include('partials.content')
+
             @include('partials.sidebar-one')
+            @include('partials.sidebar-two')
         </section>
 
         @include('partials.footer')

@@ -1,0 +1,31 @@
+body
+  > header
+  > section
+  > footer
+    width 100%
+
+body.one-sidebar
+  > section
+    grid()
+
+
+  article
+    +respond($tablet)
+      grid-space 80%
+
+    +respond($normal)
+      grid-space 75%
+
+    +respond($wide)
+      grid-space 70%
+
+
+  aside
+    +respond($tablet)
+      grid-space 20%
+
+    +respond($normal)
+      grid-space 25%
+
+    +respond($wide)
+      grid-space 30%

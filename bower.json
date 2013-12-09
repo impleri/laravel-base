@@ -4,11 +4,12 @@
     "modernizr": "~2.7",
     "jquery": "~2.0",
     "jquery-ui": "~1.10",
+    "underscore": "~1.5",
+    "backbone": "~1.1",
+    "backgrid": "~0.2",
     "picturefill": "~1.2",
     "jquery.hotkeys": "jeresig/jquery.hotkeys#~0.1",
-    "datatables": "~1.9",
     "bootstrap-wysiwyg": "*",
-    "normalize-css": "~2.1",
     "font-awesome": "~4.0"
   },
   "overrides": {

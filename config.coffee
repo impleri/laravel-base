@@ -1,29 +1,35 @@
 exports.config =
-  # See http://brunch.io/#documentation for docs.
   plugins:
     stylus:
       plugins: [
         'fluidity'
       ]
+    autoprefixer:
+      browsers: [
+        "last 2 versions",
+        "> 1%"
+      ]
   files:
     javascripts:
       joinTo:
-        'assets/js/app.js': /^app\/js\/(?!vendor)/
-        'assets/js/vendor.js': /^bower_components/
+        'assets/js/app.js': /^app\/scripts/
+        'assets/vendor/js/vendor.js': /^(bower_components|app\/vendor)/
       order:
         before: [
-          "bower_components/jquery/jquery.js",
-          "bower_components/jquery-ui/ui/jquery-ui.js",
-          "bower_components/jquery.hotkeys/jquery.hotkeys.js",
           "bower_components/modernizr/modernizr.js"
+          "bower_components/jquery/jquery.js"
+          "bower_components/jquery-ui/ui/jquery-ui.js"
+        ]
+        after: [
+          "bower_components/datatables/media/js/jquery.dataTables.js"
+          "bower_components/bootstrap-wysiwyg/bootstrap-wysiwyg.js"
         ]
     stylesheets:
       joinTo:
-        'assets/css/app.css': /^app\/(css|styl)/
-        'assets/css/vendor.css': /^bower_components/
+        'assets/css/app.css': /^app\/styles/
+        'assets/vendor/css/vendor.css': /^(bower_components|app\/vendor)/
       order:
         before: [
-          "bower_components/normalize-css/normalize.css",
           "bower_components/font-awesome/css/font-awesome.css"
         ]
   overrides:

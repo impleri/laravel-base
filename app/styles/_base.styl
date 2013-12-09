@@ -1,0 +1,24 @@
+// Settings for framework
+vendors = official // No vendor prefices needed
+grid-min-width = 320px // Mobile-first
+base-color = #111111
+
+// Include external frameworks
+@import "fluidity"
+
+// From http://www.css-101.org/articles/clearfix/latest-new-clearfix-so-far.php
+nano-clearfix()
+    &:after
+        content ""
+        display table
+        clear both
+
+// Responsive bits
+$tablet = 30em
+$normal = 60em
+$wide   = 90em
+
+respond(min)
+  condition = 'screen and (min-width: %s)' % min
+  @media condition
+    {block}
