@@ -1,5 +1,6 @@
 {
     "name": "impleri/jazz-brunch",
+    "author": "Christopher Roussel <christopher@impleri.net>",
     "description": "Jazz Brunch",
     "keywords": ["laravel", "brunch"],
     "license": "GPLv3",

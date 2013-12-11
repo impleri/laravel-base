@@ -6,7 +6,7 @@
 <meta name="author" content="@yield('author')" />
 <meta name="description" content="@yield('description')" />
 
-<meta name="DC.title" content="{{site_title}}">
+<meta name="DC.title" content="{{$site_title}}">
 <meta name="DC.subject" content="@yield('description')">
 <meta name="DC.creator" content="@yield('author')">
 
@@ -16,5 +16,5 @@
 <link rel="apple-touch-icon-precomposed" href="assets/images/apple-touch-icon-57-precomposed.png" />
 <link rel="shortcut icon" href="assets/images/favicon.png" />
 
-<link type="text/css" rel="stylesheet" media="all" href="assets/vendor/css/vendor.css" />
-<link type="text/css" rel="stylesheet" media="all" href="assets/css/app.css" />
+<link type="text/css" rel="stylesheet" media="all" href="/assets/vendor/css/vendor.css" />
+<link type="text/css" rel="stylesheet" media="all" href="/assets/css/app.css" />

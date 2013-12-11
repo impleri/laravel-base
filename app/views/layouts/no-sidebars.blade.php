@@ -3,7 +3,7 @@
     <head>
         <title>
             @section('html_title')
-                {{site_title}}
+                {{$site_title}}
             @show
         </title>
 

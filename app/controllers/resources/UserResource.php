@@ -2,8 +2,10 @@
 
 namespace app\controllers\resources;
 
-use app\library\interfaces\ElementResourceInterface;
-use app\library\traits\BaseResourceTrait;
+use Impleri\Resource\Interfaces\Element;
+use Impleri\Resource\Traits\BaseResource;
+use Impleri\Resource\Interfaces\CollectionForm;
+use app\controllers\BaseController;
 use app\models\User;
 use Redirect;
 use Request;
@@ -17,9 +19,9 @@ use Lang;
  * authentication. Feel free to change to your needs.
  */
 
-class UserResource extends BaseController implements ElementResourceInterface
+class UserResource extends BaseController implements Element, CollectionForm
 {
-    use BaseResourceTrait;
+    use BaseResource;
 
     /**
      * Get Collection
@@ -31,23 +33,17 @@ class UserResource extends BaseController implements ElementResourceInterface
     public function getCollection()
     {
         $query = User::query();
-
-        // Pass filters to query
-
         $users = $query->get();
+        $data = array('users' => false, 'json' => array());
+
+        $data['site_title'] = 'Site';
 
         if (!$users->isEmpty()) {
-            $data['users'] = $users->toArray();
+            $data['users'] = $users;
+            $data['json'] = $users->toArray();
         }
-        $data = array(
-            'users' => $users
-        );
 
-        $errors = $user->errors()->all();
-        if (!empty($errors)) {
-            $data['errors'] = $errors;
-        }
-        return $this->respond($data, '', 200);
+        return $this->respond($data, 'users.list');
     }
 
     /**
@@ -76,12 +72,9 @@ class UserResource extends BaseController implements ElementResourceInterface
         if ($data['success']) {
             // Return user object if successful
             $data['user'] = $user;
-        } else {
-            // Get validation errors (see Ardent package)
-            $data['errors'] = $user->errors()->all();
         }
 
-        return $this->respond($data, 'user.created', 200);
+        return $this->respond($data, 'users.created');
     }
 
     /**
@@ -93,7 +86,7 @@ class UserResource extends BaseController implements ElementResourceInterface
      */
     public function putCollection()
     {
-        return $this->notSupported('');
+        return $this->notSupported();
     }
 
     /**
@@ -105,7 +98,19 @@ class UserResource extends BaseController implements ElementResourceInterface
      */
     public function deleteCollection()
     {
-        return $this->notSupported('');
+        return $this->notSupported();
+    }
+
+    /**
+     * Add To Collection
+     *
+     * Shows form to add a new element to the collection.
+     * @return \Illuminate\Http\Response Laravel response
+     */
+    public function addToCollection()
+    {
+        $data = array('site_title' => 'Site');
+        return $this->respond($data, 'users.create');
     }
 
     /**
@@ -113,21 +118,22 @@ class UserResource extends BaseController implements ElementResourceInterface
      *
      * Processes input to retrieve an individual item within the collection.
      * Corresponds to the RESTful GET action for the element/item.
-     * @param \app\models\User $user Autoloaded user model
+     * @param int $rid Resource ID
      * @return \Illuminate\Http\Response Laravel response
      */
-    public function getElement(User $user)
+    public function getElement($rid = 0)
     {
-        $data = array(
-            'user' => $user
-        );
+        $user = User::find($rid);
+        $data = array('users' => false, 'json' => array());
 
-        $errors = $user->errors()->all();
-        if (!empty($errors)) {
-            $data['errors'] = $errors;
+        $data['site_title'] = 'Site';
+
+        if ($user) {
+            $data['user'] = $user;
+            $data['json'] = $user->toArray();
         }
 
-        return $this->respond($data, 'user.show', 200);
+        return $this->respond($data, 'users.show');
     }
 
     /**
@@ -137,13 +143,13 @@ class UserResource extends BaseController implements ElementResourceInterface
      * @param \Illuminate\Database\Eloquent\Model $model Autoloaded model
      * @return \Illuminate\Http\Response Laravel response
      */
-    public function postElement(User $user)
+    public function postElement($rid = 0)
     {
         // Handle HTTP 1.0 requests
         $method = Request::input('_method', 'put');
         if (in_array($method, array('delete', 'put'))) {
             $callback = $method . 'Element';
-            return $this->$callback($model);
+            return $this->$callback($rid = 0);
         }
     }
 
@@ -152,11 +158,12 @@ class UserResource extends BaseController implements ElementResourceInterface
      *
      * Processes input to update an individual item within the collection.
      * Corresponds to the RESTful PUT action for the element/item.
-     * @param \app\models\User $user Autoloaded user model
+     * @param int $rid Resource ID
      * @return \Illuminate\Http\Response Laravel response
      */
-    public function putElement(User $user)
+    public function putElement($rid = 0)
     {
+        $user = User::find($rid = 0);
         $data = array(
             'success' => $user->save()
         );
@@ -173,11 +180,12 @@ class UserResource extends BaseController implements ElementResourceInterface
      *
      * Processes input to remove an individual item from the collection.
      * Corresponds to the RESTful DELETE action for the element/item.
-     * @param \app\models\User $user Autoloaded user model
+     * @param int $rid Resource ID
      * @return \Illuminate\Http\Response Laravel response
      */
-    public function deleteElement(User $user)
+    public function deleteElement($rid = 0)
     {
+        $user = User::find($rid = 0);
         $data = array(
             'success' => $user->delete()
         );

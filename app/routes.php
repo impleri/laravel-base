@@ -7,12 +7,12 @@
  * Closure to execute when that URI is requested.
  */
 
-// All CRUD actions for individual elements should go under here as an API
+// All RESTful actions for resource elements should go under here as an API
 $resource_fmt = 'app\controllers\resources\%sResource';
 $resources = array (
     'user' => sprintf($resource_fmt, 'User'),
 );
-\app\library\support\Router::group($resources);
+Impleri\Resource\Router::group($resources);
 
 // Confide routes for handling user login/logout/confirm/reset
 Route::get('user/confirm/{code}', 'app\controllers\UserController@getConfirm');

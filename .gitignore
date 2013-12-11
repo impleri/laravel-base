@@ -1,9 +1,10 @@
-/app/css-generated
+/app/config/database.php
 /bootstrap/compiled.php
 /bower_components
 /node_modules
 /vendor
 /public
+/workbench
 composer.phar
 composer.lock
 .DS_Store

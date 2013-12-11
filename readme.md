@@ -3,9 +3,9 @@
 Laravel is a great framework for building sites in PHP. The power of composer is
 awesome. Brunch is a great way to assemble front-end components. This skeleton
 provides both in an initial configuration. Included in the configuration are
-presets to use Bower, SASS/Compass, and CoffeeScript. All of your code should be
+presets to use Bower, Stylus, and CoffeeScript. All of your code should be
 placed in app/ (see below for structure details). Configurations for the Bower,
-Brunch, Compass, Composer, PHPunit, and NPM are included in the root.
+Brunch, Stylus, Composer, PHPunit, and NPM are included in the root.
 
 ## File Structure
 
@@ -20,25 +20,22 @@ Brunch, Compass, Composer, PHPunit, and NPM are included in the root.
     | |
     | | commands/ - Your commands for artisan go here
     | | config/   - Laravel configuration files
-    | | controllers/ - Laravel controllers
-    | | css/ - Plain CSS files for your site. These will be joined in brunch and
-    | |        copied to public/assets/css
-    | | css-generated/ - CSS files generated from SASS/Compass. These will be
-    | |                  joined in brunch and copied to public/assets/css
+    | | controllers/  - Laravel controllers
     | | database/ - Laravel database files
     | | | migrations/ - Laravel database schema migration classes
     | | \_seeds/      - Laravel database seeding classes
     | |
-    | | js/ - JavaScript and CoffeeScript files for your site. These will be
-    | |       joined in brunch and copied to public/assets/css
     | | lang/    - Laravel language/internationalization files
     | | models/  - Laravel ORM models
-    | | sass/    - SASS/Compass files. These will be generated then joined in
-    | |            brunch before being copied to public/assets/css
+    | | scripts/ - JavaScript and CoffeeScript files for your site. These will be
+    | |            joined in brunch and copied to public/assets/css
     | | start/   - Laravel post-bootstrap setup
     | | storage/ - Where Laravel will dump generated views, logs, session data
+    | | styles/  - Stylus files. These will be generated then joined in
+    | |            brunch before being copied to public/assets/css
     | | tests/   - Put all of your unit, BDD, etc tests here
-    | \_views/   - Laravel Blade templates go here
+    | | views/   - Laravel Blade templates go here
+    | \_vendor/  - CSS and JS bundled in other packages
     |
     | bootstrap/        - Laravel bootstrap setup
     | bower_components/ - Where Bower will install its files. Brunch integrates
@@ -53,11 +50,10 @@ Brunch, Compass, Composer, PHPunit, and NPM are included in the root.
 
 ## Shortcuts
 
-The file structure is organised to make it quite painless to start over:
+The file structure is organised to make it quite painless to start over. Composer
+is also configures to execute npm and bower on install and update:
 
-    $ rm -rf app/css-generated public bower_components node_modules vendor composer.lock
-    $ npm install
-    $ bower install
+    $ rm -rf public bower_components node_modules vendor composer.lock
     $ composer install
 
 
