@@ -5,7 +5,15 @@ namespace app\controllers;
 use Controller;
 use View;
 
-class BaseController extends Controller {
+class BaseController extends Controller
+{
+	protected $data = array();
+
+
+	public function __construct()
+	{
+		$this->data['site_title'] = 'Site Name';
+	}
 
 	/**
 	 * Setup the layout used by the controller.

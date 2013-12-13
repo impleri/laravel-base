@@ -20,15 +20,32 @@ use Lang;
 
 class UserController extends BaseController
 {
+    public function getRegister()
+    {
+
+    }
+
+    public function getProfile(User $user)
+    {
+        if (Confide::user()) {
+            return Redirect::to('/');
+        } else {
+            $data = array(
+                'user' => $user
+            );
+            return View::make('user.profile', $data);
+        }
+    }
+
     /**
-     * Displays the login form
+     * Login Form
      *
+     * Displays the login form
+     * @return  \Illuminate\View\View Renderable output
      */
     public function getLogin()
     {
         if (Confide::user()) {
-            // If user is logged, redirect to internal
-            // page, change it to '/admin', '/dashboard' or something
             return Redirect::to('/');
         } else {
             return View::make(Config::get('confide::login_form'));
@@ -36,37 +53,33 @@ class UserController extends BaseController
     }
 
     /**
-     * Attempt to do login
+     * Login Callback
      *
+     * Attempt to do login
+     * @return \Illuminate\Http\RedirectResponse Redirection
      */
     public function postLogin()
     {
         $input = array(
-            'email'    => Input::get('email'), // May be the username too
-            'username' => Input::get('email'), // so we have to pass both
+            'email'    => Input::get('email'),
+            'username' => Input::get('email'),
             'password' => Input::get('password'),
             'remember' => Input::get('remember'),
         );
 
-        // If you wish to only allow login from confirmed users, call logAttempt
-        // with the second parameter as true.
-        // logAttempt will check if the 'email' perhaps is the username.
-        // Get the value from the config file instead of changing the controller
         if (Confide::logAttempt($input, Config::get('confide::signup_confirm'))) {
-            // If the session 'loginRedirect' is set, then redirect
-            // to that route. Otherwise redirect to '/'
-            $r = Session::get('loginRedirect');
-            if (!empty($r)) {
+            $redirect = Session::get('loginRedirect');
+            if (!empty($redirect)) {
+                $redirect = '/';
+            } else {
                 Session::forget('loginRedirect');
-
-                return Redirect::to($r);
             }
 
-            return Redirect::to('/'); // change it to '/admin', '/dashboard' or something
+            return Redirect::to($redirect);
         } else {
             $user = new User;
 
-            // Check if there was too many login attempts
+            // Figure out the error message
             if (Confide::isThrottled($input)) {
                 $err_msg = Lang::get('confide::confide.alerts.too_many_attempts');
             } elseif ($user->checkUserExists($input) && !$user->isConfirmed($input)) {
@@ -75,8 +88,8 @@ class UserController extends BaseController
                 $err_msg = Lang::get('confide::confide.alerts.wrong_credentials');
             }
 
-                        return Redirect::action('UserController@login')
-                            ->withInput(Input::except('password'))
+            return Redirect::action('UserController@login')
+                ->withInput(Input::except('password'))
                 ->with('error', $err_msg);
         }
     }

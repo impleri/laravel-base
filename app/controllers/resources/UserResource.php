@@ -3,8 +3,8 @@
 namespace app\controllers\resources;
 
 use Impleri\Resource\Interfaces\Element;
-use Impleri\Resource\Traits\BaseResource;
-use Impleri\Resource\Interfaces\CollectionForm;
+use Impleri\Resource\Traits\BaseResource as ResourceTrait;
+use Impleri\Resource\Interfaces\Collection;
 use app\controllers\BaseController;
 use app\models\User;
 use Redirect;
@@ -19,9 +19,16 @@ use Lang;
  * authentication. Feel free to change to your needs.
  */
 
-class UserResource extends BaseController implements Element, CollectionForm
+class UserResource extends BaseResource implements Collection, Element
 {
-    use BaseResource;
+    use ResourceTrait;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->data['user'] = false;
+        $this->data['users'] = false;
+    }
 
     /**
      * Get Collection
@@ -32,18 +39,13 @@ class UserResource extends BaseController implements Element, CollectionForm
      */
     public function getCollection()
     {
-        $query = User::query();
-        $users = $query->get();
-        $data = array('users' => false, 'json' => array());
-
-        $data['site_title'] = 'Site';
+        $users = User::query()->get();
 
         if (!$users->isEmpty()) {
-            $data['users'] = $users;
-            $data['json'] = $users->toArray();
+            $this->setResponse('users', $users);
         }
 
-        return $this->respond($data, 'users.list');
+        return $this->respond($this->data, 'users.list');
     }
 
     /**
@@ -65,16 +67,13 @@ class UserResource extends BaseController implements Element, CollectionForm
         $user = new User;
 
         // Ardent handles validation automatically
-        $data = array(
-            'success' => $user->save()
-        );
+        $this->data['success'] = $user->save();
 
-        if ($data['success']) {
-            // Return user object if successful
-            $data['user'] = $user;
+        if ($this->data['success']) {
+            $this->setResponse('user', $user);
         }
 
-        return $this->respond($data, 'users.created');
+        return $this->respond($this->data, 'users.created');
     }
 
     /**
@@ -102,18 +101,6 @@ class UserResource extends BaseController implements Element, CollectionForm
     }
 
     /**
-     * Add To Collection
-     *
-     * Shows form to add a new element to the collection.
-     * @return \Illuminate\Http\Response Laravel response
-     */
-    public function addToCollection()
-    {
-        $data = array('site_title' => 'Site');
-        return $this->respond($data, 'users.create');
-    }
-
-    /**
      * Get Element
      *
      * Processes input to retrieve an individual item within the collection.
@@ -124,16 +111,11 @@ class UserResource extends BaseController implements Element, CollectionForm
     public function getElement($rid = 0)
     {
         $user = User::find($rid);
-        $data = array('users' => false, 'json' => array());
-
-        $data['site_title'] = 'Site';
-
         if ($user) {
-            $data['user'] = $user;
-            $data['json'] = $user->toArray();
+            $this->setResponse('user', $user);
         }
 
-        return $this->respond($data, 'users.show');
+        return $this->respond($this->data, 'users.show');
     }
 
     /**
@@ -149,7 +131,7 @@ class UserResource extends BaseController implements Element, CollectionForm
         $method = Request::input('_method', 'put');
         if (in_array($method, array('delete', 'put'))) {
             $callback = $method . 'Element';
-            return $this->$callback($rid = 0);
+            return $this->$callback($rid);
         }
     }
 
@@ -163,16 +145,10 @@ class UserResource extends BaseController implements Element, CollectionForm
      */
     public function putElement($rid = 0)
     {
-        $user = User::find($rid = 0);
-        $data = array(
-            'success' => $user->save()
-        );
+        $user = User::find($rid);
+        $this->data['success'] = $user->save();
 
-        $errors = $user->errors()->all();
-        if (!empty($errors)) {
-            $data['errors'] = $errors;
-        }
-        return $this->respond($data, 'user.saved', 200);
+        return $this->respond($this->data, 'user.saved');
     }
 
     /**
@@ -185,16 +161,9 @@ class UserResource extends BaseController implements Element, CollectionForm
      */
     public function deleteElement($rid = 0)
     {
-        $user = User::find($rid = 0);
-        $data = array(
-            'success' => $user->delete()
-        );
+        $user = User::find($rid);
+        $this->data['success'] = $user->delete();
 
-        $errors = $user->errors()->all();
-        if (!empty($errors)) {
-            $data['errors'] = $errors;
-        }
-
-        return $this->respond($data, 'user.deleted', 200);
+        return $this->respond($this->data, 'user.deleted');
     }
 }

@@ -95,7 +95,6 @@ return array(
         'Illuminage\IlluminageServiceProvider',
         'Robbo\Presenter\PresenterServiceProvider',
         'Former\FormerServiceProvider',
-        'Bllim\Datatables\DatatablesServiceProvider',
     ),
 
     /**
