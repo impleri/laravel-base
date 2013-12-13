@@ -1,14 +1,12 @@
-<?php
-
-namespace app\controllers;
+<?php namespace app\controllers;
 
 use Zizaco\Confide\Confide;
-use Redirect;
-use Config;
-use View;
-use Input;
-use Session;
 use app\models\User;
+use Redirect;
+use Session;
+use Config;
+use Input;
+use View;
 use Lang;
 
 /**
@@ -18,7 +16,7 @@ use Lang;
  * authentication. Feel free to change to your needs.
  */
 
-class UserController extends BaseController
+class User extends Base
 {
     public function getRegister()
     {
@@ -30,10 +28,8 @@ class UserController extends BaseController
         if (Confide::user()) {
             return Redirect::to('/');
         } else {
-            $data = array(
-                'user' => $user
-            );
-            return View::make('user.profile', $data);
+            $this->data['user'] = $user;
+            return $this->render('user.profile');
         }
     }
 
@@ -48,7 +44,7 @@ class UserController extends BaseController
         if (Confide::user()) {
             return Redirect::to('/');
         } else {
-            return View::make(Config::get('confide::login_form'));
+            return $this->render(Config::get('confide::login_form'));
         }
     }
 
@@ -88,7 +84,7 @@ class UserController extends BaseController
                 $err_msg = Lang::get('confide::confide.alerts.wrong_credentials');
             }
 
-            return Redirect::action('UserController@login')
+            return Redirect::action('app\controllers\User@getLogin')
                 ->withInput(Input::except('password'))
                 ->with('error', $err_msg);
         }
@@ -103,14 +99,12 @@ class UserController extends BaseController
     {
         if (Confide::confirm($code)) {
             $notice_msg = Lang::get('confide::confide.alerts.confirmation');
-
-                        return Redirect::action('UserController@login')
-                            ->with('notice', $notice_msg);
+            return Redirect::action('app\controllers\User@getLogin')
+                ->with('notice', $notice_msg);
         } else {
             $error_msg = Lang::get('confide::confide.alerts.wrong_confirmation');
-
-                        return Redirect::action('UserController@login')
-                            ->with('error', $error_msg);
+            return Redirect::action('app\controllers\User@getLogin')
+                ->with('error', $error_msg);
         }
     }
 
@@ -120,7 +114,7 @@ class UserController extends BaseController
      */
     public function getForgotPassword()
     {
-        return View::make(Config::get('confide::forgot_password_form'));
+        return $this->render(Config::get('confide::forgot_password_form'));
     }
 
     /**
@@ -131,14 +125,12 @@ class UserController extends BaseController
     {
         if (Confide::forgotPassword(Input::get('email'))) {
             $notice_msg = Lang::get('confide::confide.alerts.password_forgot');
-
-                        return Redirect::action('UserController@login')
-                            ->with('notice', $notice_msg);
+            return Redirect::action('app\controllers\User@getLogin')
+                ->with('notice', $notice_msg);
         } else {
             $error_msg = Lang::get('confide::confide.alerts.wrong_password_forgot');
-
-                        return Redirect::action('UserController@forgot_password')
-                            ->withInput()
+            return Redirect::action('app\controllers\User@getForgotPassword')
+                ->withInput()
                 ->with('error', $error_msg);
         }
     }
@@ -149,8 +141,8 @@ class UserController extends BaseController
      */
     public function getResetPassword ($token)
     {
-        return View::make(Config::get('confide::reset_password_form'))
-                ->with('token', $token);
+        return $this->render(Config::get('confide::reset_password_form'))
+            ->with('token', $token);
     }
 
     /**
@@ -168,14 +160,12 @@ class UserController extends BaseController
         // By passing an array with the token, password and confirmation
         if (Confide::resetPassword($input)) {
             $notice_msg = Lang::get('confide::confide.alerts.password_reset');
-
-                        return Redirect::action('UserController@login')
-                            ->with('notice', $notice_msg);
+            return Redirect::action('UserController@login')
+                ->with('notice', $notice_msg);
         } else {
             $error_msg = Lang::get('confide::confide.alerts.wrong_password_reset');
-
-                        return Redirect::action('UserController@reset_password', array('token'=>$input['token']))
-                            ->withInput()
+            return Redirect::action('UserController@reset_password', array('token'=>$input['token']))
+                ->withInput()
                 ->with('error', $error_msg);
         }
     }
@@ -187,7 +177,6 @@ class UserController extends BaseController
     public function getLogout()
     {
         Confide::logout();
-
         return Redirect::to('/');
     }
 }

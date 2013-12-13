@@ -5,7 +5,7 @@ namespace app\controllers;
 use Controller;
 use View;
 
-class BaseController extends Controller
+class Base extends Controller
 {
 	protected $data = array();
 
@@ -13,6 +13,11 @@ class BaseController extends Controller
 	public function __construct()
 	{
 		$this->data['site_title'] = 'Site Name';
+	}
+
+	protected function &render($view)
+	{
+		return View::make($view, $this->data);
 	}
 
 	/**

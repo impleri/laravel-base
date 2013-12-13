@@ -1,11 +1,11 @@
 <?php namespace app\controllers\resources;
 
-use app\controllers\BaseController;
+use app\controllers\Base as BaseController;
 
 /**
  * Base Resource Controller
  */
-class BaseResource extends BaseController
+class Base extends BaseController
 {
     public function __construct()
     {

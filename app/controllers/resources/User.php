@@ -1,11 +1,9 @@
-<?php
-
-namespace app\controllers\resources;
+<?php namespace app\controllers\resources;
 
 use Impleri\Resource\Interfaces\Element;
-use Impleri\Resource\Traits\BaseResource as ResourceTrait;
+use Impleri\Resource\Traits\BaseResource;
 use Impleri\Resource\Interfaces\Collection;
-use app\controllers\BaseController;
+use app\controllers\Base;
 use app\models\User;
 use Redirect;
 use Request;
@@ -19,9 +17,9 @@ use Lang;
  * authentication. Feel free to change to your needs.
  */
 
-class UserResource extends BaseResource implements Collection, Element
+class User extends Base implements Collection, Element
 {
-    use ResourceTrait;
+    use BaseResource;
 
     public function __construct()
     {
