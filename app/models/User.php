@@ -2,6 +2,7 @@
 
 use Zizaco\Confide\ConfideUser;
 use Zizaco\Entrust\HasRole;
+use Confide;
 
 class User extends ConfideUser
 {
@@ -42,5 +43,15 @@ class User extends ConfideUser
     public function getReminderEmail()
     {
         return $this->email;
+    }
+
+    public static function findByLogin($username, $email = false)
+    {
+        $identity = array(
+            'username' => $username,
+            'email' => ($email) ? $email : $username
+        );
+
+        return Confide::model()->getUserFromCredsIdentity($identity);
     }
 }

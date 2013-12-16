@@ -19,7 +19,7 @@ return array(
      * Eloquent model should be used to retrieve your users. Of course, it is
      * often just the "User" model but you may use whatever you like.
      */
-    'model' => 'User',
+    'model' => 'app\models\User',
 
     /**
      * Authentication Table

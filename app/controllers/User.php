@@ -1,35 +1,46 @@
 <?php namespace app\controllers;
 
-use Zizaco\Confide\Confide;
-use app\models\User;
+use app\models\User as UserModel;
 use Redirect;
 use Session;
+use Confide;
 use Config;
 use Input;
-use View;
 use Lang;
 
 /**
- * Confide Controller Template
+ * User Controller
  *
- * This is the default Confide controller template for controlling user
- * authentication. Feel free to change to your needs.
+ * This controller handles user authentication and profiles. CRUD actions can be
+ * found in app\controllers\resources\User.
  */
-
 class User extends Base
 {
     public function getRegister()
     {
-
-    }
-
-    public function getProfile(User $user)
-    {
         if (Confide::user()) {
             return Redirect::to('/');
         } else {
-            $this->data['user'] = $user;
-            return $this->render('user.profile');
+            return $this->render(Config::get('confide::signup_form'));
+        }
+    }
+
+    /**
+     * Get Confirmation
+     *
+     * Attempt to confirm account with code.
+     * @param string $code Confirmation code
+     * @return
+     */
+    public function getConfirm ($code)
+    {
+        $redirect = Redirect::action('app\controllers\User@getLogin');
+        if (Confide::confirm($code)) {
+            $msg = Lang::get('confide::confide.alerts.confirmation');
+            return $redirect->with('notice', $msg);
+        } else {
+            $msg = Lang::get('confide::confide.alerts.wrong_confirmation');
+            return $redirect->with('error', $msg);
         }
     }
 
@@ -73,7 +84,7 @@ class User extends Base
 
             return Redirect::to($redirect);
         } else {
-            $user = new User;
+            $user = new UserModel;
 
             // Figure out the error message
             if (Confide::isThrottled($input)) {
@@ -87,24 +98,6 @@ class User extends Base
             return Redirect::action('app\controllers\User@getLogin')
                 ->withInput(Input::except('password'))
                 ->with('error', $err_msg);
-        }
-    }
-
-    /**
-     * Attempt to confirm account with code
-     *
-     * @param string $code
-     */
-    public function getConfirm ($code)
-    {
-        if (Confide::confirm($code)) {
-            $notice_msg = Lang::get('confide::confide.alerts.confirmation');
-            return Redirect::action('app\controllers\User@getLogin')
-                ->with('notice', $notice_msg);
-        } else {
-            $error_msg = Lang::get('confide::confide.alerts.wrong_confirmation');
-            return Redirect::action('app\controllers\User@getLogin')
-                ->with('error', $error_msg);
         }
     }
 
@@ -160,13 +153,36 @@ class User extends Base
         // By passing an array with the token, password and confirmation
         if (Confide::resetPassword($input)) {
             $notice_msg = Lang::get('confide::confide.alerts.password_reset');
-            return Redirect::action('UserController@login')
+            return Redirect::action('app\controllers\User@getLogin')
                 ->with('notice', $notice_msg);
         } else {
             $error_msg = Lang::get('confide::confide.alerts.wrong_password_reset');
-            return Redirect::action('UserController@reset_password', array('token'=>$input['token']))
+            return Redirect::action('app\controllers\User@getResetPassword', array('token' => $input['token']))
                 ->withInput()
                 ->with('error', $error_msg);
+        }
+    }
+
+    public function getProfile($user = 0)
+    {
+        if (Confide::user()) {
+            return Redirect::to('/');
+        } else {
+            if (is_numeric($user) && $user) {
+                $user = UserModel::find($user);
+            } elseif (is_numeric($user)) {
+                $user = Confide::user();
+            } else {
+                $user = UserModel::findByLogin($user);
+            }
+
+            if ($user) {
+                $this->data['user'] = $user;
+                $response = $this->render('user.show');
+            } else {
+                $response = Redirect::action('app\controllers\Home@notfound', array('message' => 'Unable to find user'));
+            }
+            return $response;
         }
     }
 

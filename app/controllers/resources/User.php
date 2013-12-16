@@ -1,10 +1,8 @@
 <?php namespace app\controllers\resources;
 
-use Impleri\Resource\Interfaces\Element;
-use Impleri\Resource\Traits\BaseResource;
 use Impleri\Resource\Interfaces\Collection;
-use app\controllers\Base;
-use app\models\User;
+use Impleri\Resource\Interfaces\Element;
+use app\models\User as UserModel;
 use Redirect;
 use Request;
 use Config;
@@ -19,8 +17,6 @@ use Lang;
 
 class User extends Base implements Collection, Element
 {
-    use BaseResource;
-
     public function __construct()
     {
         parent::__construct();
@@ -37,13 +33,13 @@ class User extends Base implements Collection, Element
      */
     public function getCollection()
     {
-        $users = User::query()->get();
+        $users = UserModel::query()->get();
 
         if (!$users->isEmpty()) {
             $this->setResponse('users', $users);
         }
 
-        return $this->respond($this->data, 'users.list');
+        return $this->respond($this->data, 'user.list');
     }
 
     /**
@@ -62,7 +58,7 @@ class User extends Base implements Collection, Element
             return $this->$callback();
         }
 
-        $user = new User;
+        $user = new UserModel;
 
         // Ardent handles validation automatically
         $this->data['success'] = $user->save();
@@ -71,7 +67,7 @@ class User extends Base implements Collection, Element
             $this->setResponse('user', $user);
         }
 
-        return $this->respond($this->data, 'users.created');
+        return $this->respond($this->data, 'user.created');
     }
 
     /**
@@ -108,12 +104,12 @@ class User extends Base implements Collection, Element
      */
     public function getElement($rid = 0)
     {
-        $user = User::find($rid);
+        $user = UserModel::find($rid);
         if ($user) {
             $this->setResponse('user', $user);
         }
 
-        return $this->respond($this->data, 'users.show');
+        return $this->respond($this->data, 'user.show');
     }
 
     /**
@@ -143,7 +139,7 @@ class User extends Base implements Collection, Element
      */
     public function putElement($rid = 0)
     {
-        $user = User::find($rid);
+        $user = UserModel::find($rid);
         $this->data['success'] = $user->save();
 
         return $this->respond($this->data, 'user.saved');
@@ -159,7 +155,7 @@ class User extends Base implements Collection, Element
      */
     public function deleteElement($rid = 0)
     {
-        $user = User::find($rid);
+        $user = UserModel::find($rid);
         $this->data['success'] = $user->delete();
 
         return $this->respond($this->data, 'user.deleted');

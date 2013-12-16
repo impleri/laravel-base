@@ -1,9 +1,7 @@
-<?php
-
-namespace app\controllers;
+<?php namespace app\controllers;
 
 use Controller;
-use View;
+use Response;
 
 class Base extends Controller
 {
@@ -13,24 +11,11 @@ class Base extends Controller
 	public function __construct()
 	{
 		$this->data['site_title'] = 'Site Name';
+		$this->data['errors'] = array();
 	}
 
-	protected function &render($view)
+	protected function render($view, $response = 200)
 	{
-		return View::make($view, $this->data);
+		return Response::view($view, $this->data, $response);
 	}
-
-	/**
-	 * Setup the layout used by the controller.
-	 *
-	 * @return void
-	 */
-	protected function setupLayout()
-	{
-		if ( ! is_null($this->layout))
-		{
-			$this->layout = View::make($this->layout);
-		}
-	}
-
 }

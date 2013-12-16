@@ -151,11 +151,10 @@ return array(
         'Validator'       => 'Illuminate\Support\Facades\Validator',
         'View'            => 'Illuminate\Support\Facades\View',
 
-        'Sluggable'       => 'Cviebrock\EloquentSluggable\Facades\Sluggable',
         'Confide'         => 'Zizaco\Confide\ConfideFacade',
         'Entrust'         => 'Zizaco\Entrust\EntrustFacade',
+        'Sluggable'       => 'Cviebrock\EloquentSluggable\Facades\Sluggable',
         'Illuminage'      => 'Illuminage\Facades\Illuminage',
         'Former'          => 'Former\Facades\Former',
-        'Datatables'      => 'Bllim\Datatables\Datatables',
     ),
 );

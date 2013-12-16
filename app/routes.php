@@ -7,22 +7,28 @@
  * Closure to execute when that URI is requested.
  */
 
+
+$controller_dir = 'app\controllers\\';
+
+// First register error pages
+Route::get('404', array('as' => 'notfound', 'uses' => $controller_dir . 'Site@notfound'));
+Route::get('403', array('as' => 'notauth', 'uses' => $controller_dir . 'Site@notauth'));
+
+
 // All RESTful actions for resource elements should go under here as an API
-$resource_fmt = 'app\controllers\resources\%sResource';
+$resource_dir = $controller_dir . 'resources\\';
 $resources = array (
-    'user' => sprintf($resource_fmt, 'User'),
+    'user' => $resource_dir . 'User',
 );
 Impleri\Resource\Router::resources($resources);
 
-// Confide routes for handling user login/logout/confirm/reset
-Route::get('user/confirm/{code}', 'app\controllers\UserController@getConfirm');
-Route::get('user/reset_password/{token}', 'app\controllers\UserController@getResetPassword');
-Route::controller('user', 'app\controllers\UserController');
+// Non-API actions
 
-// Final route
-Route::get(
-    '/',
-    function () {
-        return View::make('hello');
-    }
-);
+// User routes
+Route::controller('user', $controller_dir . 'User');
+
+// Global static routes
+Route::get('/', $controller_dir . 'Site@index');
+
+// Dynamic page routes
+Route::get('{slug}', $controller_dir . 'Site@slug');
