@@ -15,6 +15,7 @@
     "coffeelint-brunch": "~1.5",
     "javascript-brunch": "~1.7",
     "uglify-js-brunch": "~1.7",
+    "stylus": "~0.41",
     "stylus-brunch": "~1.7",
     "fluidity": "~0.2",
     "css-brunch": "~1.7",
