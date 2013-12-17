@@ -88,7 +88,6 @@ return array(
         'Illuminate\View\ViewServiceProvider',
         'Illuminate\Workbench\WorkbenchServiceProvider',
 
-        'JasonLewis\EnhancedRouter\EnhancedRouterServiceProvider',
         'Cviebrock\EloquentSluggable\SluggableServiceProvider',
         'Zizaco\Confide\ConfideServiceProvider',
         'Zizaco\Entrust\EntrustServiceProvider',

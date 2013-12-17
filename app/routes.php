@@ -18,9 +18,17 @@ Route::get('403', array('as' => 'notauth', 'uses' => $controller_dir . 'Site@not
 // All RESTful actions for resource elements should go under here as an API
 $resource_dir = $controller_dir . 'resources\\';
 $resources = array (
-    'user' => $resource_dir . 'User',
+    'user' => array(
+        'controller' => $resource_dir . 'User',
+        'isCollection' => true,
+        'isElement' => true
+    ),
+    'page' => array(
+        'controller' => $resource_dir . 'Page',
+        'isElement' => true,
+    ),
 );
-Impleri\Resource\Router::resources($resources);
+Impleri\Resource\Router::group($resources);
 
 // Non-API actions
 

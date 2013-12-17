@@ -8,7 +8,6 @@
     "require": {
         "php": ">=5.4.0",
         "laravel/framework": "~4.0",
-        "jasonlewis/enhanced-router": "~1.0",
         "impleri/laravel-resource": "dev-master",
         "cviebrock/eloquent-sluggable": "~1.0",
         "laravelbook/ardent": "~1.1",
