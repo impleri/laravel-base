@@ -1,27 +1,10 @@
 <?php namespace app\models;
 
-use LaravelBook\Ardent\Ardent;
-use Sluggable;
-
-class Page extends Ardent
+class Page extends Slugged
 {
     public static $rules = array(
         'title' => 'required',
-        'slug'  => 'required|unique'
+        'slug'  => 'required|unique',
+        'body'  => 'required'
     );
-
-    public static $sluggable = array(
-        'build_from' => 'title',
-        'save_to'    => 'slug',
-    );
-
-    public function beforeValidate()
-    {
-        Sluggable::make($this,true);
-    }
-
-    public static function findBySlug($slug)
-    {
-        return static::where('slug', '=', $slug)->first();
-    }
 }
