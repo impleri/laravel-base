@@ -1,4 +1,4 @@
-<?php namespace app\models;
+<?php namespace app\models\types;
 
 use LaravelBook\Ardent\Ardent;
 use Sluggable;
@@ -17,7 +17,7 @@ class Slugged extends Ardent
 
     public function beforeValidate()
     {
-        Sluggable::make($this,true);
+        Sluggable::make($this, true);
     }
 
     public static function findBySlug($slug)

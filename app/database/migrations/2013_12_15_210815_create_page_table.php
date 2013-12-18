@@ -12,11 +12,13 @@ class CreatePageTable extends Migration
 	{
 		Schema::create('pages', function(Blueprint $table)
 		{
-			$table->increments('id');
-			$table->string('slug');
+			$table->increments('id')->primary();
+			$table->string('slug')->index();
 			$table->string('title');
-			$table->string('body');
+			$table->tinyInteger('status');
+			$table->text('body');
 			$table->timestamps();
+			$table->sotDeletes();
 		});
 	}
 
