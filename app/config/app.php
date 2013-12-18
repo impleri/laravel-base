@@ -89,11 +89,12 @@ return array(
         'Illuminate\Workbench\WorkbenchServiceProvider',
 
         'Cviebrock\EloquentSluggable\SluggableServiceProvider',
+        'Robbo\Presenter\PresenterServiceProvider',
         'Zizaco\Confide\ConfideServiceProvider',
         'Zizaco\Entrust\EntrustServiceProvider',
         'Illuminage\IlluminageServiceProvider',
-        'Robbo\Presenter\PresenterServiceProvider',
         'Former\FormerServiceProvider',
+        'Baum\BaumServiceProvider',
     ),
 
     /**

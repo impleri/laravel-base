@@ -10,4 +10,14 @@ class Post extends Slugged
         'status'  => 'required',
         'body'  => 'required'
     );
+
+    public function author()
+    {
+        return $this->belongsTo('app\models\User', 'author');
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany('app\models\Tag');
+    }
 }

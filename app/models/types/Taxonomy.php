@@ -1,15 +1,17 @@
 <?php namespace app\models\types;
 
-class Taxonomy extends Slugged
-{
-    public static $rules = array(
-        'name' => 'required',
-        'slug'  => 'required|unique',
-        'description'  => 'required'
-    );
+use Baum\Node;
+use Sluggable;
 
+class Taxonomy extends Node
+{
     public static $sluggable = array(
         'build_from' => 'name',
         'save_to'    => 'slug',
     );
+
+    public static function findBySlug($slug)
+    {
+        return static::where('slug', '=', $slug)->first();
+    }
 }

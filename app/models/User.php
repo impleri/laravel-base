@@ -15,6 +15,11 @@ class User extends ConfideUser
      */
     protected $hidden = array('password');
 
+    public function posts()
+    {
+        return $this->hasMany('app\models\Post', 'author');
+    }
+
     /**
      * Get the unique identifier for the user.
      *

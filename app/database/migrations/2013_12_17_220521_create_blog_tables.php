@@ -28,18 +28,18 @@ class CreateBlogTables extends Migration
 			$table->string('slug')->index();
 			$table->string('name');
 			$table->string('description');
+			$table->integer('parent_id')->nullable()->index();
+      		$table->integer('lft')->nullable()->index();
+      		$table->integer('rgt')->nullable()->index();
+      		$table->integer('depth')->nullable()->index();
+      		$table->timestamps();
 		});
 
-		Schema::create('post_taxonomy'), function(Blueprint $table)
+		Schema::create('post_tags', function(Blueprint $table)
 		{
 			$table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
-
-			// Manually create the morph since the _id should be unsigned
-			$table->unsignedInteger('termable_id');
-			$table->string('termable_type');
-
-			// Ensure no duplicates appear
-			$table->primary(array('post_id', 'termable_id', 'termable_type'));
+			$table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
+			$table->primary(array('post_id', 'tag_id'));
 		});
 	}
 
@@ -48,7 +48,7 @@ class CreateBlogTables extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('post_taxonomy');
+		Schema::drop('post_tags');
 		Schema::drop('series');
 		Schema::drop('tags');
 		Schema::drop('posts');

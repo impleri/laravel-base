@@ -13,25 +13,6 @@ class Site extends Base
 		return $this->render('hello');
 	}
 
-    public function slug($slug)
-    {
-        $methods = array('page');
-
-        foreach ($methods as $method) {
-            $response = $this->$method($slug);
-
-            if ($response) {
-                break;
-            }
-        }
-
-        if (!$response) {
-            $response = $this->notfound('Unable to find page');
-        }
-
-        return $response;
-    }
-
     public function page($slug)
     {
         $response = false;
@@ -43,6 +24,21 @@ class Site extends Base
         }
 
         return $response;
+    }
+
+    public function post($slug)
+    {
+
+    }
+
+    public function tag($slug)
+    {
+
+    }
+
+    public function archives($year = 0, $month = 0)
+    {
+
     }
 
     public function notauth($exception = '')

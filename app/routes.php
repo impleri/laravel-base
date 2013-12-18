@@ -7,36 +7,56 @@
  * Closure to execute when that URI is requested.
  */
 
-
 $controller_dir = 'app\controllers\\';
 
 // First register error pages
 Route::get('404', array('as' => 'notfound', 'uses' => $controller_dir . 'Site@notfound'));
 Route::get('403', array('as' => 'notauth', 'uses' => $controller_dir . 'Site@notauth'));
 
-
 // All RESTful actions for resource elements should go under here as an API
-$resource_dir = $controller_dir . 'resources\\';
 $resources = array (
     'user' => array(
-        'controller' => $resource_dir . 'User',
         'isCollection' => true,
         'isElement' => true
     ),
-    'page' => array(
-        'controller' => $resource_dir . 'Page',
+    'page',
+    'post' => array(
+        'isCollection' => true,
         'isElement' => true,
     ),
+    'tag' => array(
+        'isCollection' => true,
+        'isElement' => true,
+        'allowPutAll' => true,
+    ),
 );
-Impleri\Resource\Router::group($resources);
 
-// Non-API actions
+$options = array(
+    'pattern' => $controller_dir . 'resources\%s',
+);
+Impleri\Resource\Router::resources($resources, $options);
 
 // User routes
 Route::controller('user', $controller_dir . 'User');
 
-// Global static routes
-Route::get('/', $controller_dir . 'Site@index');
+// Route patterns
+Route::pattern('year', '[0-9]{2,4}'); // Allow 2 or 4 digit years
+Route::pattern('month', '[0-9]{1,2}'); // Allow 1 or 2 digit months
+Route::pattern('slug', '[a-z0-9_\-]+'); // Alphanumerics plus underscore and dash
+
+// Blog Routes
+Route::group(
+    array('prefix' => 'blog'),
+    function() use ($controller_dir) {
+        Route::get('tags/{slug}', $controller_dir . 'Blog@tag');
+        Route::get('{year}/{month?}', $controller_dir . 'Blog@archive');
+        Route::get('{slug}', $controller_dir . 'Blog@post');
+        Route::get('/', $controller_dir . 'Blog@index');
+    }
+);
 
 // Dynamic page routes
-Route::get('{slug}', $controller_dir . 'Site@slug');
+Route::get('{slug}', $controller_dir . 'Site@page');
+
+// Home page
+Route::get('/', $controller_dir . 'Site@index');
